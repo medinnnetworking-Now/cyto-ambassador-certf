@@ -1,0 +1,85 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cytokine Student Ambassador – Certificate & Badge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,700;1,700&family=Lora:ital,wght@1,500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Poppins,sans-serif;background:#F3F6FF;color:#0A0A0A}
+header{background:linear-gradient(165deg,#0B5BEA,#041C96);color:#fff;padding:28px 20px;text-align:center}
+header h1{margin:0;font-size:26px}header h1 span{color:#FFC21A}header p{margin:6px 0 0;opacity:.9;font-size:15px}
+main{max-width:860px;margin:0 auto;padding:20px}
+.card{background:#fff;border-radius:18px;padding:20px;box-shadow:0 8px 24px -12px rgba(4,28,150,.35);margin-bottom:20px}
+label{font-weight:700;font-size:14px;display:block;margin:10px 0 6px}
+input{width:100%;font:inherit;font-size:18px;padding:12px 14px;border:2px solid #cfd8f6;border-radius:12px}
+input:focus{outline:none;border-color:#0636C9}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+button{font:inherit;font-weight:700;font-size:15px;border:0;border-radius:999px;padding:12px 22px;cursor:pointer;background:#0636C9;color:#fff}
+button.y{background:#FFC21A;color:#0A0A0A}
+canvas{width:100%;height:auto;border-radius:10px;border:1px solid #e1e7fb;display:block}
+h2{margin:0 0 12px;font-size:18px}.note{font-size:13px;color:#555;margin-top:12px}
+</style></head><body>
+<header><h1>Cytokine <span>Student Ambassador</span></h1><p>Type your name, preview, and download your certificate and badge.</p></header>
+<main>
+<div class="card"><label for="n">Your full name</label><input id="n" maxlength="40" placeholder="e.g. Anjali Menon" autocomplete="name">
+<label for="c">College (optional)</label><input id="c" maxlength="60" placeholder="e.g. Government Medical College, Kozhikode" autocomplete="off"></div>
+<div class="card"><h2>Certificate</h2><canvas id="cert" width="1754" height="1240"></canvas>
+<div class="row"><button id="dc">Download certificate (PNG)</button><button id="dp" class="y">Download certificate (PDF)</button></div></div>
+<div class="card"><h2>Badge for Instagram / WhatsApp</h2><canvas id="badge" width="1080" height="1080" style="max-width:520px"></canvas>
+<div class="row"><button id="db">Download badge (PNG)</button></div>
+<p id="msg" class="note" style="color:#B90A1E;font-weight:700"></p><p class="note">For your own use while you are an active Cytokine Student Ambassador. Cytokine Lectures · MAKEDIFFERENTIALS LLP</p></div>
+</main>
+<script>
+var LOGO="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAAB5CAYAAAC+/irKAAAPeUlEQVR42u2de5SUZRnAf8/sLghyMQJNURIRMbyhqAjm/VqBmYlQeY1EUdBueiKPkWUnPamZkXIpk05eTlTo8XIoCDU1tfKGkiIXUUAU5BIgAju7T3+8z8Y4zO7Oznzzft+38z7nzFmOx52Z93t/+7zvcxdSLqq6K9AD2BfYB+gL7AYMBDoBtUBP4JPALoDkvHJFIvxaAnwILAb+A/wVmCMi6whSsYfuA7Yag2wgMAg4BOgP9DIIOxhw+evSvH9nYngWbwBTgSkisjWglxIAVbUncCRwIjDUgOsB1Nn/0mBQad668rWcNLNm8fws5gHjROTNgF9CAVTVXsDxwAiDbm/Tbo32agm21n7GBV6uLAOGi8iCAGByoMsAQ4BRwJlAHztOs6blpBnYpACMhSCThK3/n8DpIvLfAGC84HUGhgOXAMcAuxp0jc1oueYMCGnlCE6ixr9JRCYGAOMDbxQw1gyKDFCfZyQUe7zm/zuTkuvGf4HBIrKkWgHMxABeraqOBOaaVXi4HbH1BkmN/czkAZgp8N8LacdMioyt7vZHGDSgJ/iGANcDp9ln1xdhuTa9tJX7Hgm85xUjzwLHi0i2GgGs9QTebsC1wDigK7CtBSOhJatVWgBLUurfHIDzY64KAFYGvhOAW3C+vG3A9gJ3vObucVokWJJGx3rOMbxfALACdz3gGmAi0AXYmnfvLEbTSRHgScr3oAboVq13wNoKwbcHcCdwjrlUthfQaG2JUjQHnRIkAJgH32DgbuDQFtwqxd7dWjMqpB3sQQOwMQAYDXxnAL8Beue4VSRCoKQd7sEGYGkAsHz4LgCmAJ3t2JUijQZtBSxp53vwJrA6AFgefBcbfB1z4MsHSIuIYFQLdLnymIg0EBzRJcN3ITDN4Gss8/OK0Yjt7fg9sppDcbVlwjeyCPjaerxWk/abWs3wlbXZFlZ7DJcc2tjK++ZqNq0yyJqTl4GTRGRDcMO0Hb79gT8YfNpG90mAzxkeo6sdPighG0ZVu+FcLX0oLlcvyMfleeAsEVkYHkVpGvCnuHT5IG2TFZZ+9gsR2RQeRwnHoaqeD/wuZVpuG65Ecg078g634JJBt+Sk+9fgfJhdceWbdTl/oKVodwU2Aa8AjwNzReT9gFyJAKrqAcBTwO4JXctm4B1gAbAIV5O7BPjAQPjAjKUGoEFEtJl1NiW1ZgzKUhMfFNhezT6+VnjqAhxf24Z63FsTCN9C4ElcqeOLwPJya24NzIYcbRmkMskqk4Hpxf7CJZocWaGqv1LVk6wrQpB0wXeoqr6gqvNVta6YX9hLVZcnALxXVXWCqn4qbGMqwatR1ctVdY3t5w3F/uIvYwbvHVUdr6pdwzamFr7Bqvpozp42qOrJxfziIFXdEhN4jao6XVV7hy1MLXh9VPUWVd2Yt7drVHWvYt7ggZjge19VR4ctTC14n1DVa1V1ZZ5CabR/P2+dMFp8k6Gqui0G+F5T1UPCNqYSvI6qOkZV3ygAXi6A91BEJOTbuIZAPuVfwHkisixsZ+rgOx34AXBsEfU6i4u5+33kWfO9FO57qb3n3aOq9S1ovXwNOKo1DXg5LhzlSxYB54rIyrClqYJvNHAzOxJTtIjIWxYXF2/2TXur6mqPmm+TqobkhnSB182CAY1FaLx87fehqvZvSQN+Gdcqwpf8SET+HrY1NfD1BWYAx5VYm70WWNdS56rnPGq/J1W1Q9jW1MA3RFWXtlHr5WvAFy23oKAGHAQc4Wk9W4Hvicj2sLWpgG8o8CdgzzI7Uqwhp4Qj3xn4JXY0/660zBSRZ8PWpgK+YyKCD2BZbipcJudDOgCf97Smj3DpXUGSD98g4I8RwQewsrmakINx8zd8yCMi8krY3uRbu+xotaIRFmQVBPBk/EQ+1BYVJPlyidkEGlH2fdZGVBQE8CRPi3odl9ofJPkj0C4j+qbsb+8EoKp+0ixgX8fvlrDFiZdhwIFEP6BndSENOBDwkWnciOumECT5clpOJ4uo5JX8Iq0mAAd7GtmwwsoUgyRfDqzAez5DM50RfB2//w7tKFJx/+tgli8Rj6/dGUBrJn4Q/uajBUkBg0W02murvECBPMCM3f328bSwF8PeJl9EpL7FlKnS5P5CRfoZU7XdPaxrE1XcCzmF8u8Ij9/luFAehQAcgJ/k0zVA6I2SHnkQFzKNog/QZBFZ0xyAe3pa0Fu4ZkBB0nEMLwDui0D7LcB10aU5AA/0tKZ1ItIYtjZV8gNcuYSUCN8W4KqWPB8Z3IBoH7I87GfqtOC7wLl2d29Ld7CmuO93RWQerXRI7edpPW+HLU0lhPOBzwGzW2lTl9tDcQUwSkTuoogWvT3xN5IqSDohfBMYAXwVeALXi7FQW+ZluMmox4rIn0nKvOAAYLuAMAvcr6oPAAfgghcDjKH1wKvAfBFZTxt7RIvHDqZB0g+i4hqDLoyqS37G03f/MGxfkEIA1nqsAwkSZCcAs54+q1N43EEK3QF9OYdDh1MiS5fqZUbAYcD+fNyVlgVew2UePWLGQ6IB9DX2PjQULw+6PYEzgbOBo2g5hDrCfk5T1fGW3dL+J6ZHPRYsCKjqwcBYXESirXH7se4tdHxSNWEtboBLn6ABEwdeP+C7wPlAlxLfJotVtiUVwgxumhAprTFol+nwqvpNXPr65WXAlw/hHZb9njgN6Ms/1z3gVdQ4tDuAMyJOr88C4+w4vipJ48MywBuePqtfaMXWInxfAOZGCJ/mGJhNEF4B/CK3PVoSAFzl6bP2AHYLqBWE72vATCpbm9ME4ZXA7UmBMINrFrPNw2ftDnw64LbzHD5cr5xOnqrdssB44OetzurwBOAKYIOnzzosILdTk++7gI4Vgq0lCCcAt8YNYQZ4rwIleM3J0QG7/8N3qmm+jjHV/WaBbwI/sxnJ8QBovqEFnj7vGFXdJcCnn8YV6nSmsn14ioHw28DNcUHYpH5f9vR5A+xV1WNLgduBvgnpgJAFrgF+EieAL3hKSuiAi2dWs1yIi+cmqQ1HAzBRVSfFBeB/8Fc0fnYSPfIes1gmeYJK23hcZ4FJqjrROIAi8oHHY/hIe1WjjCW5rqimhkQ3qup34shQeRx/4b9Lq3GoH3CVR5hKNVzUjJIJvgGcB/jKGzvX4p7VJJNwzvgkA5hrPd+mqpf7BPA1XANxH9IN+FYVab8RZnz4ksYIfj+Dy6C51AuAIrINeNSnNaiqR1QBfHtbhkttCrQfeXXcNcBkVR3jK0t5lsdjuLPdNeraMXy7AFOAfT0bE0QIYS1wp8WsKw7gy8BLHh/WqbiYZHuVHwFfiMGapQIQ3qWqF1UUQCteud/zA/thexxYrarX4yIMpBzAJgjrgKmqegERdy8vdGd5CX9Ni8D1oDtTRJa2E/iuBW7y2PYk13ioZLZzDbAd+IaI3FuRSjURWWF3QZ/SH/iTBenTDt91wM0xwIeHEtsGXDh1uiXRVqxUcgpuoLRPGQTMUtV9U1xMdCNwY4xfo9FTl7OOBuHoigAoIi/i1yXTJIcDD6vqUSmDbw9cP+Xr2jl8+RD+RlVHVapY/DY7733LwcBsVf16SuA7Efgb8OUExHLxDGEn4G5VHRk5gCLyD+ChmB5mD/vruk9V+ycUvO6q+hPc8MWDYv462Zg6T2RzIDynEu0ybiLetmpfAZ5R1etUdfeEgJexv/ingO8noOtXA26w9JPmKokDwl2Be1T1i2W7YQo88Mm4Ur64ZRlwN3CfiCyJAbw64HTgatwo06TIPBE5RVX3Mu/F0fiLZpGX5bQJOF9EHo4SwN7A80Q7PbEcWWd3rpnA0yKyykMsdzgumWBowm4CjcAIEXks57vOwuVbxgXhRuCrTd+pbABtYWOAXyfwKvY+rpzg77jZZouA90RkexnAdcbFboeZxjsR6JVQG2guzoHfkJd3OAs4IkYINxiEs6MCsNYMks8n3CjdgCsxfRfXdGmr/VyfYyVKntUouDy9frjOBAMMwKRX79UDp4nIk81U3T2I863GAWGdnVSjRWRO2QDaogbYxbsXQZIgM0Tk4hb2q69BeGiMEK7FDaz5W9kA2qIuAn4bU5gpyA5ZDQwRkWWt7Nd+BuEhMUL4gUE4r+yupSIyA5ge9j92mdQafLZfS4Ev4bLd62K6JvQEHlDVE8rWgE0OWJzzdVjgIBZ5BDi7LT3+VHV/04QHxagJV5nF/kJZAOYs6IkEuWaqRVYAJ5SStmYRpQeBgTFCuAQ4I9ePmylxXNNiYJRZl0H8yHZgfKk5kyKyCDgHV3gW13HcD5iiqp3K7lwvIs/gOm7WBza8yI9F5KEy57wttDvhGzFCeCoumlT6EZyn2i8F7sTvyIdqk6nAlVH1dlbVz9hxfEAMCqQG5yMcKiKLMxFMT5xuseJs4KQiMgf4TpSNxUXkddOEi2LQhA1mGU8gSn+ehet+SZgJF6U8AYy03j1UaAjOLNy4r3rPWnAVMEQiXtCZwAz8taBoz/I4cF6l4MvZs0PsON7PM4R1wNhMxMOMZwNn4dq9BSldZlVS8+Xt2atmHS+L4Tg+NVOBBT2PyyJ5NHBUktyBC12txd8U9Fdws+iWe4SwETgsU6EFrbS/qhvwMwKiPchm4AoRuTqO6ZYWoRgJrPQEoQKdxUMm8Wm4AqeDA2PNynxzszxN/CUHw4A/4iZz1le4Mda7GQ9/WXNwSZ23B21IoXqKycDJSYAvpxhtFC7Zt5KaUIBtGU+LWisi3zIv+LzAHeAyuYeLyASf970i9+spg3B1BSHMAPMlpuKer+Aa91TjsbzcToOpIvIhya55Pgn4A85xXF8BN8wYiXFxXXHDmK+oEhBX4upqponIu6Sn68MpuI5pvSKEsBYXhRkmCVhgV1xXgTGWY5hpZ+AtBO4Bfpcm8AoYJr/HDdepj+DuVwtcJiLTJGEThI4DLsANs9krxdBtxIXR7gVmi8hG0t/1a6Bp8KG4eG5jGUfvvcAlIlIvCV3sp3DF32cZlHukYI82mGHxEPAXEXmT9td0szuu2/84XNVgtg09aTK4GPBM4Osispk0FBep6p7AEOBk4LO4XoJdEvDVtgBLgedwbTGeEZG3qI6u/8cBE82rUZfjUtICx22N/dyMi/L8WES2RpYPGIMFvS+uyutwXN1rP7sg96jQ/TGLKy9cjYuXvgy8aq9luQ+T6hu+c7x5NE4A+uAyoTI5kY7tZvXPNePrpbKLkhL4ELqYm6Cf3RsPALrjah+62hp72KuzXYCbBvRtwyVHrjXQGoF3DLTNuGqy9cBiYL2IbCFIoT3oZs+7r+1DjVn9i4DXWvJz/g/BsaW3QJ9LLQAAAABJRU5ErkJggg==";
+var BL="#0636C9",YEL="#FFC21A",BLK="#0A0A0A";
+var logo=new Image();logo.src=LOGO;
+function rr(x,a,b,w,h,r){x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath()}
+function T(x,t,px,py,font,col,al,ls){x.font=font;x.fillStyle=col;x.textAlign=al||"center";x.letterSpacing=(ls||0)+"px";x.fillText(t,px,py)}
+function fit(x,t,font0,maxw,px){var s=px;do{x.font=font0.replace("PX",s+"px");x.letterSpacing="0px";s-=2}while(x.measureText(t).width>maxw&&s>24);return font0.replace("PX",(s+2)+"px")}
+function seal(x,cx,cy,r){x.fillStyle=BL;x.beginPath();x.arc(cx,cy,r,0,7);x.fill();x.lineWidth=8;x.strokeStyle=YEL;x.stroke();x.drawImage(logo,cx-42,cy-50,84,63);T(x,"AMBASSADOR",cx,cy+50,"700 13px Poppins","#fff","center",1.2)}
+function drawCert(){var c=document.getElementById("cert"),x=c.getContext("2d"),nm=(document.getElementById("n").value||"Your Name").trim(),co=document.getElementById("c").value.trim();
+x.clearRect(0,0,1754,1240);x.fillStyle="#FBFAF6";x.fillRect(0,0,1754,1240);
+x.lineWidth=6;x.strokeStyle=BL;rr(x,29,29,1696,1182,10);x.stroke();x.lineWidth=2;x.strokeStyle=YEL;rr(x,44,44,1666,1152,6);x.stroke();
+var g=x.createLinearGradient(0,0,500,230);g.addColorStop(0,"#0B5BEA");g.addColorStop(1,"#041C96");x.fillStyle=g;x.beginPath();x.moveTo(0,0);x.lineTo(1754,0);x.lineTo(1754,127);x.lineTo(0,230);x.fill();
+x.drawImage(logo,430,36,122,92);T(x,"Cytokine ",575,112,"700 58px Poppins","#fff","left");var w=(x.measureText("Cytokine ").width);T(x,"UG Clinics",575+w,112,"700 58px Poppins",YEL,"left");
+T(x,"FOSTERING BETTER CLINICIANS",577,148,"500 24px Poppins","#fff","left",5);
+T(x,"CERTIFICATE OF ASSOCIATION",877,340,"500 30px Poppins",BL,"center",10);
+T(x,"CYTOKINE",877,440,"italic 700 96px Poppins",BLK);T(x,"STUDENT AMBASSADOR",877,535,"italic 700 96px Poppins",BLK);
+T(x,"This is to certify that",877,610,"500 26px Poppins","#444");
+T(x,nm,877,705,fit(x,nm,"italic 500 PX Lora",1100,96),BL);
+x.fillStyle=YEL;x.fillRect(527,725,700,5);
+if(co)T(x,co,877,775,"500 28px Poppins",BLK);
+T(x,"is proud to be associated with Cytokine Lectures as a Student Ambassador,",877,co?835:800,"500 28px Poppins","#333");
+T(x,"bringing clinical learning with Cytokine UG Clinics closer to batchmates and college.",877,co?877:842,"500 28px Poppins","#333");
+x.fillStyle=BLK;x.fillRect(170,1008,420,3);x.fillRect(1164,1008,420,3);
+T(x,"Dr. Sidharth Narayanan",380,1048,"700 26px Poppins",BLK);T(x,"COO, Cytokine Lectures",380,1080,"500 21px Poppins","#444");
+T(x,"Cytokine Lectures",1374,1048,"700 26px Poppins",BLK);T(x,"MAKEDIFFERENTIALS LLP",1374,1080,"500 21px Poppins","#444");
+seal(x,877,1002,88);T(x,"cytokinelectures.com",877,1174,"500 19px Poppins","#666")}
+function drawBadge(){var c=document.getElementById("badge"),x=c.getContext("2d"),nm=(document.getElementById("n").value||"Your Name").trim(),co=document.getElementById("c").value.trim();
+x.clearRect(0,0,1080,1080);var g=x.createLinearGradient(0,0,1080,1080);g.addColorStop(0,"#0B5BEA");g.addColorStop(.5,"#0636C9");g.addColorStop(1,"#041C96");x.fillStyle=g;x.fillRect(0,0,1080,1080);
+var r=x.createRadialGradient(1080,0,0,1080,0,490);r.addColorStop(0,"rgba(61,185,255,.55)");r.addColorStop(1,"rgba(61,185,255,0)");x.fillStyle=r;x.fillRect(0,0,1080,1080);
+x.drawImage(logo,230,64,85,64);T(x,"Cytokine ",335,108,"700 38px Poppins","#fff","left");var w=x.measureText("Cytokine ").width;T(x,"UG Clinics",335+w,108,"700 38px Poppins",YEL,"left");T(x,"FOSTERING BETTER CLINICIANS",337,138,"500 20px Poppins","#fff","left",3);
+x.fillStyle=YEL;rr(x,300,190,480,58,29);x.fill();T(x,"PROUD TO BE A",540,231,"700 30px Poppins",BLK,"center",4);
+T(x,"CYTOKINE",540,372,"italic 700 118px Poppins","#fff");T(x,"AMBASSADOR",540,490,"italic 700 118px Poppins","#fff");
+x.fillStyle="#fff";rr(x,120,560,840,co?250:220,30);x.fill();
+T(x,nm,540,670,fit(x,nm,"italic 500 PX Lora",740,80),BL);
+T(x,co||"Student Ambassador",540,co?720:722,"500 28px Poppins","#444");if(co)T(x,"Student Ambassador · Cytokine Lectures",540,768,"500 24px Poppins","#444");else T(x,"Cytokine Lectures",540,770,"500 24px Poppins","#444");
+T(x,"Learn clinics at your own pace with",540,900,"500 30px Poppins","#fff");T(x,"Cytokine UG Clinics",540,950,"700 36px Poppins",YEL);T(x,"cytokinelectures.com",540,1030,"500 22px Poppins","#cfe0ff")}
+function draw(){drawCert();drawBadge()}
+function fname(s){return (document.getElementById("n").value.trim()||"Ambassador").replace(/[^A-Za-z0-9]+/g,"-")+"-"+s}
+function saveFile(b,name){var done=false;return Promise.resolve().then(function(){if(window.claude&&claude.use)return claude.use("downloads")}).then(function(d){if(d){done=true;return d.save({filename:name,data:b})}}).catch(function(e){done=true;try{msg("Download was not saved. Please try again.")}catch(_){}}).then(function(){if(!done){var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=name;a.click()}})}
+function msg(t){var m=document.getElementById("msg");m.textContent=t;setTimeout(function(){m.textContent=""},4000)}
+function dl(canvas,name){canvas.toBlob(function(b){saveFile(b,name)},"image/png")}
+function pdf(canvas,name){var jpg=canvas.toDataURL("image/jpeg",.95).split(",")[1],bin=atob(jpg),n=bin.length,u=new Uint8Array(n);for(var i=0;i<n;i++)u[i]=bin.charCodeAt(i);
+var W=842,H=595,parts=[],off=0,offs=[];function add(s){var a=typeof s==="string"?new TextEncoder().encode(s):s;parts.push(a);off+=a.length}
+add("%PDF-1.4\n");offs[1]=off;add("1 0 obj<</Type/Catalog/Pages 2 0 R>>endobj\n");offs[2]=off;add("2 0 obj<</Type/Pages/Kids[3 0 R]/Count 1>>endobj\n");
+offs[3]=off;add("3 0 obj<</Type/Page/Parent 2 0 R/MediaBox[0 0 "+W+" "+H+"]/Contents 4 0 R/Resources<</XObject<</I 5 0 R>>>>>>endobj\n");
+var cs="q "+W+" 0 0 "+H+" 0 0 cm /I Do Q";offs[4]=off;add("4 0 obj<</Length "+cs.length+">>stream\n"+cs+"\nendstream endobj\n");
+offs[5]=off;add("5 0 obj<</Type/XObject/Subtype/Image/Width "+canvas.width+"/Height "+canvas.height+"/ColorSpace/DeviceRGB/BitsPerComponent 8/Filter/DCTDecode/Length "+n+">>stream\n");add(u);add("\nendstream endobj\n");
+var xr=off;add("xref\n0 6\n0000000000 65535 f \n");for(var k=1;k<=5;k++)add(("0000000000"+offs[k]).slice(-10)+" 00000 n \n");add("trailer<</Size 6/Root 1 0 R>>\nstartxref\n"+xr+"\n%%EOF");
+saveFile(new Blob(parts,{type:"application/pdf"}),name)}
+document.getElementById("n").addEventListener("input",draw);document.getElementById("c").addEventListener("input",draw);
+document.getElementById("dc").onclick=function(){dl(document.getElementById("cert"),fname("Cytokine-Ambassador-Certificate.png"))};
+document.getElementById("dp").onclick=function(){pdf(document.getElementById("cert"),fname("Cytokine-Ambassador-Certificate.pdf"))};
+document.getElementById("db").onclick=function(){dl(document.getElementById("badge"),fname("Cytokine-Ambassador-Badge.png"))};
+Promise.all([document.fonts.load("700 20px Poppins"),document.fonts.load("500 20px Poppins"),document.fonts.load("italic 700 20px Poppins"),document.fonts.load("italic 500 20px Lora")]).catch(function(){}).then(function(){logo.onload=draw;if(logo.complete)draw();setTimeout(draw,800)});
+logo.onload=draw;draw();
+</script></body></html>
